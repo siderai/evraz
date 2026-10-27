@@ -1,0 +1,42 @@
+[project]
+name = "steelclub-backend"
+version = "1.0.0"
+description = "V. SteelClub — V.b. Backend с приложением V.b.iii. Plan"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "django>=5.2,<5.3",
+    "django-environ>=0.14,<0.15",
+    "djangorestframework>=3.18,<4.0",
+    "drf-spectacular>=0.30,<0.31",
+    "django-clickhouse-backend>=2.0,<3.0",
+    "psycopg[binary]>=3.2,<4.0",
+    "gunicorn>=23.0,<24.0",
+    "whitenoise>=6.9,<7.0",
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.14"
+pytest = "^9.0"
+pytest-django = "^4.11"
+factory-boy = "^3.3"
+freezegun = "^1.5"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "backend.settings"
+python_files = ["test_*.py"]
+pythonpath = ["."]
+addopts = "--strict-markers"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "DJ", "B", "C4"]
+ignore = ["N815"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["backend"]
